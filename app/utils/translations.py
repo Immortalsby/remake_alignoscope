@@ -68,9 +68,9 @@ class Trans:
             "fr": "Télécharger",
             "zh": "上传"
         },
-        "Originally programmed by <a href='http://gerdes.fr' class='text-light'>Kim Gerdes</a>, rewritten by Boyuan SHI in <i class='fab fa-python'></i> Flask with <i class='fab fa-js'></i> and <i class='fas fa-database'></i>": {
-            "fr": "Initialement Programmé par <a href='http://gerdes.fr' class='text-light'>Kim Gerdes</a>, Réécrit par Boyuan SHI en <i class='fab fa-python'></i> Flask avec <i class='fab fa-js'></i> et <i class='fas fa-database'></i>",
-            "zh": "原作者 <a href='http://gerdes.fr' class='text-light'>Kim Gerdes</a>，由 Boyuan SHI 使用 <i class='fab fa-python'></i> Flask、<i class='fab fa-js'></i> 和 <i class='fas fa-database'></i> 重制开发"
+        "Originally programmed by <a href='http://gerdes.fr' class='text-light'>Kim Gerdes</a>, rewritten by Boyuan SHI in <i class='fab fa-python'></i> Flask with <i class='fab fa-js'></i> and <i class='fas fa-database'></i>MySQL": {
+            "fr": "Initialement Programmé par <a href='http://gerdes.fr' class='text-light'>Kim Gerdes</a>, Réécrit par Boyuan SHI en <i class='fab fa-python'></i> Flask avec <i class='fab fa-js'></i> et <i class='fas fa-database'></i>MySQL",
+            "zh": "原作者 <a href='http://gerdes.fr' class='text-light'>Kim Gerdes</a>，由 石博元 使用 <i class='fab fa-python'></i> Flask、<i class='fab fa-js'></i> 和 <i class='fas fa-database'></i>MySQL 重制开发"
         }
     }
 
