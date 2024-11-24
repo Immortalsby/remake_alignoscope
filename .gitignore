@@ -1,7 +1,13 @@
-__pycache__
+__pycache__/
 .env
 flask_session*
 migrations
 sql
-.env
 .python-version
+.venv/
+venv/
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyw
