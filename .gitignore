@@ -1,0 +1,7 @@
+__pycache__
+.env
+flask_session*
+migrations
+sql
+.env
+.python-version
