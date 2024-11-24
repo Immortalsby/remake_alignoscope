@@ -22,6 +22,8 @@ def get_locale():
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
+    app.config['DEBUG'] = True  # 启用调试模式
+    app.config['ENV'] = 'development'  # 设置为开发环境
     
     # 初始化扩展
     db.init_app(app)

@@ -1,49 +1,176 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>&nbsp;&nbsp;&nbsp;alignoscope</h1>
+<div class="modern-container">
+    <!-- 标题区域 -->
+    <div class="header-section mb-4">
+        <h1 class="display-4 text-primary">
+            <i class="fas fa-align-left"></i> alignoscope
+        </h1>
+    </div>
 
-<form id="search-form" method="post">
-    <table width="100%">
-        <tr>
-            <td colspan="2">{{ trans._("Romain Roland: Jean-Christophe - Original") }}</td>
-            <td colspan="2">{{ trans._("Chinese Translation by Fu Lei (傅雷)") }}</td>
-        </tr>
-        <tr>
-            <td>
-                <label>{{ trans._("contains:") }}</label>
-                <input type="text" name="pos0" id="pos0">
-            </td>
-            <td>
-                <label>{{ trans._("does not contain:") }}</label>
-                <input type="text" name="neg0" id="neg0">
-            </td>
-            <td>
-                <label>{{ trans._("contains:") }}</label>
-                <input type="text" name="pos1" id="pos1">
-            </td>
-            <td>
-                <label>{{ trans._("does not contain:") }}</label>
-                <input type="text" name="neg1" id="neg1">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="4">
-                <button type="submit" class="alibutton">{{ trans._("search") }}</button>
-            </td>
-        </tr>
-    </table>
-</form>
+    <!-- 控制区域 -->
+    <div class="control-section card mb-4">
+        <div class="card-body d-flex align-items-center gap-3">
+            <!-- 左侧按钮和选择器 -->
+            <div class="d-flex align-items-center gap-3">
+                <button id="show-upload-btn" class="btn btn-primary" title="上传新文件">
+                    <i class="fas fa-upload"></i> 上传文件
+                </button>
+                <select id="table-select" name="table" class="form-select w-auto">
+                    <option value="jeanchristophe">Jean-Christophe</option>
+                </select>
+            </div>
+            
+            <!-- 右侧语言切换按钮组 -->
+            <div class="ms-auto btn-group">
+                <a href="?lang=fr" class="btn btn-outline-primary {% if session.lang == 'fr' %}active{% endif %}">
+                    <i class="fas fa-flag"></i> Français
+                </a>
+                <a href="?lang=zh" class="btn btn-outline-primary {% if session.lang == 'zh' %}active{% endif %}">
+                    <i class="fas fa-flag"></i> 中文
+                </a>
+                <a href="?lang=en" class="btn btn-outline-primary {% if session.lang == 'en' %}active{% endif %}">
+                    <i class="fas fa-flag"></i> English
+                </a>
+            </div>
+        </div>
+    </div>
 
-<div id="results"></div>
+    <!-- 搜索表单 -->
+    <form id="search-form" class="search-section card mb-4" method="post" onsubmit="event.preventDefault(); search(this);">
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <h5>{{ trans._("Romain Roland: Jean-Christophe - Original") }}</h5>
+                </div>
+                <div class="col-md-6">
+                    <h5>{{ trans._("Chinese Translation by Fu Lei (傅雷)") }}</h5>
+                </div>
+            </div>
+            
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label">{{ trans._("Contains:") }}</label>
+                    <input type="text" name="pos0" id="pos0" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">{{ trans._("Does Not Contain:") }}</label>
+                    <input type="text" name="neg0" id="neg0" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">{{ trans._("Contains:") }}</label>
+                    <input type="text" name="pos1" id="pos1" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">{{ trans._("Does Not Contain:") }}</label>
+                    <input type="text" name="neg1" id="neg1" class="form-control">
+                </div>
+            </div>
+            
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-primary px-4">
+                    <i class="fas fa-search"></i> {{ trans._("Search") }}
+                </button>
+            </div>
+        </div>
+    </form>
 
-<div id="popup" class="alipopup">
-    <div id="t"></div>
+    <!-- 结果区域 -->
+    <div id="results" class="results-section mb-4"></div>
+
+    <!-- 弹出窗口 -->
+    <div id="popup" class="modern-popup">
+        <div id="t" class="popup-content card"></div>
+    </div>
+
+    <!-- 帮助和说明区域 -->
+    <div class="accordion mb-4" id="helpAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#howtoCollapse">
+                    {{ trans._("Howto") }}
+                </button>
+            </h2>
+            <div id="howtoCollapse" class="accordion-collapse collapse" data-bs-parent="#helpAccordion">
+                <div class="accordion-body">
+                    {{ trans.manual()|safe }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#presentationCollapse">
+                    {{ trans._("Presentation") }}
+                </button>
+            </h2>
+            <div id="presentationCollapse" class="accordion-collapse collapse" data-bs-parent="#helpAccordion">
+                <div class="accordion-body">
+                    {{ trans.pres()|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer-section card bg-dark text-light">
+        <div class="card-body">
+            <div class="row align-items-center text-center g-3">
+                <div class="col-md-4">
+                    {{ trans._("Idea & Alignment by <a href='https://miaojun.net' class='text-light'>Miao Jun</a>")|safe }}
+                </div>
+                <div class="col-md-4">
+                    {{ trans._("Inspired by <a href='http://www.cavi.univ-paris3.fr/ilpga/ilpga/sfleury/page1.htm' class='text-light'>Serge Fleury</a>'s <a href='http://tal.univ-paris3.fr/mkAlign/' class='text-light'>MkAlign</a>")|safe }}
+                </div>
+                <div class="col-md-4">
+                    {{ trans._("Other Projects") }} : {{ trans._("French-Chinese Political Corpus <a href='https://politics.corpusmart.cn/' class='text-light' target='_blank'><i class='fas fa-external-link-alt'></i></a>")|safe }}
+                </div>
+
+            </div>
+            <hr class="my-3">
+            <div class="text-center">
+                <img src="{{ url_for('static', filename='images/alignoscope.png') }}" class="me-2" alt="Alignoscope">
+                {{ trans._("Originally programmed by <a href='http://gerdes.fr' class='text-light'>Kim Gerdes</a>, rewritten by Boyuan SHI in <i class='fab fa-python'></i> Flask with <i class='fab fa-js'></i> and <i class='fas fa-database'></i>")|safe }}
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- 上传对话框 -->
+<div class="modal fade" id="upload-dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ trans._("Upload New Files") }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="upload-form">
+                    <div class="mb-3">
+                        <label class="form-label">{{ trans._("New Table Name:") }}</label>
+                        <input type="text" id="table_name" name="table_name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">{{ trans._("File 1:") }}</label>
+                        <input type="file" id="file1" name="file1" class="form-control" accept=".txt" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">{{ trans._("File 2:") }}</label>
+                        <input type="file" id="file2" name="file2" class="form-control" accept=".txt" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ trans._("Cancel") }}</button>
+                <button type="submit" form="upload-form" class="btn btn-primary">{{ trans._("Upload") }}</button>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
 {% block scripts %}
-<!-- 引入主要的 JavaScript 文件 -->
 <script src="{{ url_for('static', filename='js/utils.js') }}"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 {% endblock %}

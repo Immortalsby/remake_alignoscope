@@ -54,12 +54,15 @@ visibility:hidden;
 
 
 .alipopuptitle {
-border:0px;
-color:black;
+position: relative;
+border: 0;
+color: black;
 font-size: x-small;
 background-color: white;
 opacity: 0.8;
 font-weight: bold;
+text-align: center;
+padding: 8px 30px 8px 8px;
 }
 
 .alipopuptable {
@@ -77,14 +80,11 @@ color:gray;
 }
 
 .alisq {
-	font-size: 16px;
-	cursor: pointer;
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-	margin: 2px;
-	background-color: #eee;
-	border: 1px solid #ddd;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 1px;
+    background-color: #eee;  /* 默认灰色 */
 }
 
 .alisq span {
@@ -92,24 +92,24 @@ color:gray;
 }
 
 /* 匹配类型的样式 */
-.alisq.alisqn { /* 负匹配 */
-	background-color: #ff9800 !important;
+.alisq.alisqn {  
+    background-color: #ff9800 !important;  /* 橙色 - 负向匹配 */
 }
 
-.alisq.alisqp { /* 正匹配 */
-	background-color: #4caf50 !important;
+.alisq.alisqp {
+    background-color: #4CAF50;  /* 绿色 - 正向匹配 */
 }
 
-.alisq.alisqm { /* 完全匹配 */
-	background-color: #2196f3 !important;
+.alisq.alisqm {
+    background-color: #2196F3;  /* 蓝色 - 完全匹配(both) */
 }
 
-.alisq.alisql { /* 左侧匹配 */
-	background-color: #9c27b0 !important;
+.alisq.alisql {
+    background-color: #9C27B0;  /* 紫色 - 左侧匹配 */
 }
 
-.alisq.alisqr { /* 右侧匹配 */
-	background-color: #e91e63 !important;
+.alisq.alisqr {
+    background-color: #E91E63;  /* 粉色 - 右侧匹配 */
 }
 
 .alisqtd {
@@ -411,5 +411,205 @@ td[style*="border:3px solid grey;"] {
     background-color: #ff9800;
     color: white;
     padding: 0 2px;
+    border-radius: 2px;
+}
+
+.table-selection {
+    margin: 10px 0;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.file-upload {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.file-upload button {
+    background: #4CAF50;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.file-upload button:hover {
+    background: #45a049;
+}
+
+/* 顶部控制区 */
+.top-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+/* 上传按钮 */
+.control-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.control-btn:hover {
+    background: #45a049;
+}
+
+/* 表格选择下拉框 */
+.table-select {
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 200px;
+}
+
+/* 上传对话框 */
+.upload-dialog {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+/* 对话框内容 */
+.upload-content {
+    position: relative;
+    background: white;
+    margin: 10% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 关闭按钮 */
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+/* 表单样式 */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* 提交按钮 */
+.submit-btn {
+    background: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background: #45a049;
+}
+
+/* 弹出窗口关闭���钮 */
+.popup-close {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+    line-height: 1;
+}
+
+.popup-close:hover {
+    color: #000;
+}
+
+/* 高亮样式 */
+.alisqp {
+    background-color: #4CAF50;  /* 绿色 - 正向匹配 */
+    color: white;
+    padding: 0px;
+    border-radius: 2px;
+}
+
+.alisqn {
+    background-color: #ff9800;  /* 橙色 - 负向匹配 */
+    color: white;
+    padding: 0px;
+    border-radius: 2px;
+}
+
+.alisqm {
+    background-color: #2196F3;  /* 蓝色 - 完全匹配 */
+    color: white;
+    padding: 0px;
+    border-radius: 2px;
+}
+
+.alisql {
+    background-color: #9C27B0;  /* 紫色 - 左侧匹配 */
+    color: white;
+    padding: 0px;
+    border-radius: 2px;
+}
+
+.alisqr {
+    background-color: #E91E63;  /* 粉色 - 右侧匹配 */
+    color: white;
+    padding: 0px;
     border-radius: 2px;
 }
