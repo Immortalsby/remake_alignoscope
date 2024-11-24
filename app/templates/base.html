@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Alignoscope{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/alignoscopestyle.css') }}">
+</head>
+<body>
+    <div class="lang">
+        {% for lang in config['LANGUAGES'] %}
+            {% if lang != g.lang_code %}
+                <a href="{{ url_for('main.set_language', lang_code=lang) }}">
+                    {{ lang if lang != 'zh' else '中文' }}
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    {% block content %}{% endblock %}
+    
+    <!-- 先加载工具函数 -->
+    <script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+    <!-- 然后加载主要的 JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

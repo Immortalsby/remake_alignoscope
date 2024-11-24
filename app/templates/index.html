@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>&nbsp;&nbsp;&nbsp;alignoscope</h1>
+
+<form id="search-form" method="post">
+    <table width="100%">
+        <tr>
+            <td colspan="2">{{ trans._("Romain Roland: Jean-Christophe - Original") }}</td>
+            <td colspan="2">{{ trans._("Chinese Translation by Fu Lei (傅雷)") }}</td>
+        </tr>
+        <tr>
+            <td>
+                <label>{{ trans._("contains:") }}</label>
+                <input type="text" name="pos0" id="pos0">
+            </td>
+            <td>
+                <label>{{ trans._("does not contain:") }}</label>
+                <input type="text" name="neg0" id="neg0">
+            </td>
+            <td>
+                <label>{{ trans._("contains:") }}</label>
+                <input type="text" name="pos1" id="pos1">
+            </td>
+            <td>
+                <label>{{ trans._("does not contain:") }}</label>
+                <input type="text" name="neg1" id="neg1">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <button type="submit" class="alibutton">{{ trans._("search") }}</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<div id="results"></div>
+
+<div id="popup" class="alipopup">
+    <div id="t"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- 引入主要的 JavaScript 文件 -->
+<script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}
