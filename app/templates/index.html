@@ -14,10 +14,14 @@
         <div class="card-body d-flex align-items-center gap-3">
             <!-- 左侧按钮和选择器 -->
             <div class="d-flex align-items-center gap-3">
-                <button id="show-upload-btn" class="btn btn-primary" title="上传新文件">
+                <button id="show-upload-btn" class="btn btn-primary" 
+                        data-bs-toggle="tooltip" 
+                        data-bs-placement="bottom" 
+                        title="暂不支持上传" 
+                        disabled>
                     <i class="fas fa-upload"></i> 上传文件
                 </button>
-                <select id="table-select" name="table" class="form-select w-auto">
+                <select id="table-select" name="table" class="form-select w-auto" hidden> 
                     <option value="jeanchristophe">Jean-Christophe</option>
                 </select>
             </div>
@@ -78,11 +82,6 @@
 
     <!-- 结果区域 -->
     <div id="results" class="results-section mb-4"></div>
-
-    <!-- 弹出窗口 -->
-    <div id="popup" class="modern-popup">
-        <div id="t" class="popup-content card"></div>
-    </div>
 
     <!-- 帮助和说明区域 -->
     <div class="accordion mb-4" id="helpAccordion">
@@ -166,6 +165,18 @@
                 <button type="submit" form="upload-form" class="btn btn-primary">{{ trans._("Upload") }}</button>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- 弹出窗口 -->
+<div id="popup">
+    <div class="popup-header">
+        <span class="popup-title">¶ N°<span id="popup-id"></span></span>
+        <span class="popup-close">&times;</span>
+    </div>
+    <div class="popup-body">
+        <div id="popupLang0" class="popup-column"></div>
+        <div id="popupLang1" class="popup-column"></div>
     </div>
 </div>
 {% endblock %}

@@ -50,10 +50,9 @@ def search():
         pos1=data.get('pos1', ''),
         neg1=data.get('neg1', '')
     )
-    
-    # 统计不同类型的匹配
+
     stats = {
-        'total_matches': 0,
+        'total_blocks': 0,
         'left_matches': 0,
         'right_matches': 0,
         'both_matches': 0,
@@ -72,6 +71,8 @@ def search():
             stats['left_matches'] += 1
             stats['right_matches'] += 1
             match_type.append('both')
+            match_type.append('left')
+            match_type.append('right')
         else:
             if 'left' in match_types:
                 stats['left_matches'] += 1
@@ -80,11 +81,12 @@ def search():
                 stats['right_matches'] += 1
                 match_type.append('right')
         
-        if 'negative' in match_types:
+        if 'negative_left' in match_types or 'negative_right' in match_types:
             stats['negative_matches'] += 1
-            match_type.append('negative')
-        
-        stats['total_matches'] += 1
+            if 'negative_left' in match_types:
+                match_type.append('negative_left')
+            if 'negative_right' in match_types:
+                match_type.append('negative_right')
         
         # 处理高亮
         lang0 = result['lang0']
