@@ -6,6 +6,12 @@ const withNextIntl = createNextIntlPlugin();
 const config = {
   env: {
     DEBUG_MODE: process.env.DEBUG_MODE,
+  },
+  compress: true,
+  poweredByHeader: false,
+  generateEtags: true,
+  httpAgentOptions: {
+    keepAlive: true,
   }
 };
 
