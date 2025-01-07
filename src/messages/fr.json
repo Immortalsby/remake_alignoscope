@@ -1,0 +1,30 @@
+{
+  "title": "alignoscope",
+  "originalTitle": "Romain Roland: Jean-Christophe - L'original",
+  "translationTitle": "Traduction Chinoise par Fu Lei (傅雷)",
+  "howto": "Mode D'emploi",
+  "presentation": "Présentation",
+  "manual": "<p><b>Instructions de recherche :</b></p><ul><li>Entrez les mots-clés français dans la zone de gauche et les mots-clés chinois dans la zone de droite</li><li>Utilisez des espaces pour séparer plusieurs mots-clés (ET logique)</li><li>Utilisez | pour séparer les alternatives (OU logique)</li><li>Utilisez _ pour remplacer un espace dans une expression exacte</li><li>Utilisez .* pour représenter n'importe quel caractère</li><li>Les mots dans la zone \"ne contient pas\" seront exclus</li></ul><p><b>Légende des couleurs :</b></p><ul><li>Vert foncé : correspond aux termes de recherche dans les deux langues</li><li>Vert clair : correspond aux termes de recherche dans une langue mais pas dans l'autre</li><li>Sans remplissage : ne correspond à aucun terme de recherche</li></ul><p><b>Couleurs des bordures de la fenêtre contextuelle :</b></p><ul><li>Bleu : contient des termes de recherche (\"contient\")</li><li>Rouge : contient des termes exclus (\"ne contient pas\")</li><li>Noir : aucune correspondance dans les deux langues pour les termes positifs ou négatifs</li></ul>",
+  "pres": "<p>Alignoscope est un outil de recherche de textes alignés bilingues, spécialement conçu pour l'exploration et l'analyse de corpus parallèles français-chinois.</p><p>Cet outil est basé sur le texte original français de \"Jean-Christophe\" et sa traduction chinoise par Fu Lei.</p><p>Nous remercions tous ceux qui ont contribué à ce projet.</p>",
+  "upload": "Télécharger",
+  "search": "Chercher",
+  "contains": "Contient",
+  "notContains": "Ne Contient Pas",
+  "cancel": "Annuler",
+  "uploadNewFiles": "Télécharger de Nouveaux Fichiers",
+  "newTableName": "Nom de la Nouvelle Table :",
+  "help": {
+    "title": "Aide",
+    "manual": "Manuel",
+    "pres": "Présentation"
+  },
+  "stats": {
+    "totalBlocks": "Total des Blocs",
+    "bothMatches": "Correspondances des Deux",
+    "leftMatches": "Correspondances à Gauche",
+    "rightMatches": "Correspondances à Droite",
+    "positiveMatches": "Correspondances Positives",
+    "negativeMatches": "Correspondances Négatives",
+    "all": "Tous"
+  }
+}

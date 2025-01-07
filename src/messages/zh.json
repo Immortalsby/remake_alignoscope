@@ -1,0 +1,30 @@
+{
+  "title": "alignoscope",
+  "originalTitle": "罗曼·罗兰：《约翰·克利斯朵夫》- 原文",
+  "translationTitle": "傅雷译本",
+  "howto": "使用方法",
+  "presentation": "项目介绍",
+  "manual": "<p><b>搜索说明：</b></p><ul><li>在左侧框中输入法语关键词，在右侧框中输入中文关键词</li><li>使用空格分隔多个关键词（逻辑与）</li><li>使用 | 分隔可选项（逻辑或）</li><li>使用 _ 替换精确短语中的空格</li><li>使用 .* 表示任意字符</li><li>在\"不包含\"框中的词语将被排除</li></ul><p><b>颜色说明：</b></p><ul><li>深绿色：完全符合对两种语言的搜索</li><li>浅绿色：符合相关区域的搜索，但并不满足另一种语言中的搜索</li><li>无填充色：不符合相关区域的搜索</li></ul><p><b>弹出窗口边框颜色：</b></p><ul><li>蓝色：被搜索词（包含）</li><li>红色：被排除词（非包含）</li><li>黑色：在两种语言中都没有与正、负项搜索相匹配的</li></ul>",
+  "pres": "<p>Alignoscope 是一个双语对齐文本搜索工具，专门用于探索和分析法汉平行语料库。</p><p>本工具基于《约翰·克利斯朵夫》的法语原文和傅雷的中文译本。</p><p>感谢所有为本项目做出贡献的人。</p>",
+  "upload": "上传",
+  "search": "搜索",
+  "contains": "包含",
+  "notContains": "不包含",
+  "cancel": "取消",
+  "uploadNewFiles": "上传新文件",
+  "newTableName": "新表名称：",
+  "help": {
+    "title": "帮助",
+    "manual": "使用说明",
+    "pres": "项目介绍"
+  },
+  "stats": {
+    "totalBlocks": "总方块数",
+    "bothMatches": "两边匹配",
+    "leftMatches": "左侧匹配",
+    "rightMatches": "右侧匹配",
+    "positiveMatches": "正向匹配",
+    "negativeMatches": "负向匹配",
+    "all": "所有"
+  }
+}

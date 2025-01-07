@@ -2,20 +2,418 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 全局变量 */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --primary-color: #4a90e2;
+    --secondary-color: #5C586C;
+    --success-color: #4CAF50;
+    --warning-color: #ff9800;
+    --danger-color: #f44336;
+    --light-color: #f5f5f5;
+    --dark-color: #333;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* 基础样式 */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 主容器样式 */
+.modern-container {
+    flex: 1 0 auto;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 内容区域样式 */
+.content-wrapper {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 主要内容区域 */
+.main-content {
+    flex: 1 0 auto;
+}
+
+/* Accordion 样式 */
+.accordion-section {
+    flex-shrink: 0;
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+/* Footer 样式 */
+.footer-section {
+    flex-shrink: 0;
+    width: 100%;
+    margin-top: auto;
+    background-color: var(--dark-color);
+}
+
+/* 标题样式 */
+.header-section h1 {
+    color: var(--secondary-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+/* 搜索表单样式 */
+.search-section {
+    background: white;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-section input {
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+.search-section input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+}
+
+/* 结果区域样式 */
+.results-section {
+    width: 100%;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.result-item {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.result-content {
+    display: flex;
+    min-height: 60px;
+}
+
+.result-left,
+.result-right {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.result-left {
+    border-right: 1px solid #ddd;
+}
+
+/* 匹配类型样式 */
+.result-none {
+    background-color: #f8f9fa;
+}
+
+.result-left {
+    background-color: #ffe6e6;
+}
+
+.result-right {
+    background-color: #e6f3ff;
+}
+
+.result-both {
+    background-color: #f2e6ff;
+}
+
+/* 小方块样式 */
+.alisq {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 1px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.alisq-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* 匹配类型样式 */
+.alisq.deep-green { 
+    background-color: #006400;  /* 深绿色：完全符合两种语言的搜索 */
+}
+
+.alisq.light-green { 
+    background-color: #90EE90;  /* 浅绿色：符合相关区域的搜索，但不满足另一种语言 */
+}
+
+/* 搜索词高亮样式 */
+.alisqp {
+    background-color: #ffeb3b;  /* 黄色背景：正向匹配高亮 */
+    padding: 0 2px;
+    border-radius: 2px;
+    display: inline;
+}
+
+.alisqn {
+    background-color: #ff5252;  /* 红色背景：负向匹配高亮 */
+    padding: 0 2px;
+    border-radius: 2px;
+    display: inline;
+    color: white;
+}
+
+/* 弹出窗口样式 */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    border-width: 3px;
+    border-style: solid;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    visibility: hidden;  /* 默认隐藏 */
+}
+
+/* 弹出窗口边框颜色 */
+.popup.border-positive {
+    border-color: #0000FF;  /* 蓝色：被搜索词（"包含"）*/
+}
+
+.popup.border-negative {
+    border-color: #FF0000;  /* 红色：被排除词（"非包含"）*/
+}
+
+.popup.border-none {
+    border-color: #000000;  /* 黑色：在两种语言中都没有与正、负项搜索相匹配的 */
+}
+
+.popup-header {
+    display: flex;
+    justify-content: center;  /* 居中对齐 */
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+}
+
+.popup-title {
+    font-weight: 500;
+    color: #333;
+    margin: 0;  /* 移除默认边距 */
+    text-align: center;  /* 文本居中 */
+}
+
+.popup-close {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #666;
+    padding: 5px;
+    line-height: 1;
+}
+
+.popup-close:hover {
+    color: #333;
+}
+
+.popup-body {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    flex: 1;
+    overflow: hidden;
+}
+
+.popup-column {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background: #fff;
+    word-break: break-word;
+    overflow-y: auto;
+    max-height: 100%;
+}
+
+/* 按钮样式 */
+.control-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.control-btn:hover {
+    background: #45a049;
+}
+
+/* 表单样式 */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* 加载动画 */
+.loading {
+    position: relative;
+    min-height: 200px;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 删除 Tailwind layer 中的定义 */
+@layer components {
+  .match-both {
+    @apply bg-green-100;
+  }
+  
+  .match-left {
+    @apply bg-blue-100;
+  }
+  
+  .match-right {
+    @apply bg-purple-100;
+  }
+  
+  .match-negative {
+    @apply bg-red-100;
+  }
+}
+
+/* 背景颜色 */
+.bg-deep-green {
+  background-color: #006400;  /* 深绿色：完全匹配 */
+}
+
+.bg-light-green {
+  background-color: #90EE90;  /* 浅绿色：部分匹配或负向匹配 */
+}
+
+/* 边框颜色 */
+.border-blue {
+  border-color: #0000FF;  /* 蓝色 */
+}
+
+.border-red {
+  border-color: #FF0000;  /* 红色 */
+}
+
+.border-black {
+  border-color: #000000;  /* 黑色 */
+}
+
+.stats-item {
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin: 0 4px;
+}
+
+.stats-total {
+  background-color: #006400;  /* 深绿色，与方块的深绿色相同 */
+  color: white;
+}
+
+.stats-single {
+  background-color: #90EE90;  /* 浅绿色，与方块的浅绿色相同 */
+  color: black;
+}
+
+.search-stats {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.search-stats span {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.stats-item {
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin: 0 4px;
+  font-weight: 500;
+}
+
+.stats-total {
+  background-color: #006400;  /* 深绿色，与方块的深绿色相同 */
+  color: white;
+}
+
+.stats-single {
+  background-color: #90EE90;  /* 浅绿色，与方块的浅绿色相同 */
+  color: black;
 }

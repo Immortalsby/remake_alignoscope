@@ -1,0 +1,30 @@
+{
+  "title": "alignoscope",
+  "originalTitle": "Romain Roland: Jean-Christophe - Original",
+  "translationTitle": "Chinese Translation by Fu Lei (傅雷)",
+  "howto": "How to Use",
+  "presentation": "Presentation",
+  "manual": "<p><b>Search Instructions:</b></p><ul><li>Enter French keywords in the left box and Chinese keywords in the right box</li><li>Use spaces to separate multiple keywords (logical AND)</li><li>Use | to separate alternatives (logical OR)</li><li>Use _ to replace space in exact phrases</li><li>Use .* to represent any characters</li><li>Words in \"does not contain\" boxes will be excluded</li></ul><p><b>Color Legend:</b></p><ul><li>Dark green: matches search terms in both languages</li><li>Light green: matches search terms in one language but not the other</li><li>No fill: does not match any search terms</li></ul><p><b>Popup Border Colors:</b></p><ul><li>Blue: contains search terms (\"contains\")</li><li>Red: contains excluded terms (\"does not contain\")</li><li>Black: no matches in either language for positive or negative terms</li></ul>",
+  "pres": "<p>Alignoscope is a bilingual aligned text search tool, specially designed for exploring and analyzing French-Chinese parallel corpora.</p><p>This tool is based on the original French text of \"Jean-Christophe\" and its Chinese translation by Fu Lei.</p><p>We thank all those who have contributed to this project.</p>",
+  "upload": "Upload",
+  "search": "Search",
+  "contains": "Contains",
+  "notContains": "Does Not Contain",
+  "cancel": "Cancel",
+  "uploadNewFiles": "Upload New Files",
+  "newTableName": "New Table Name:",
+  "help": {
+    "title": "Help",
+    "manual": "Manual",
+    "pres": "Presentation"
+  },
+  "stats": {
+    "totalBlocks": "Total Blocks",
+    "bothMatches": "Both Matches",
+    "leftMatches": "Left Matches",
+    "rightMatches": "Right Matches",
+    "positiveMatches": "Positive Matches",
+    "negativeMatches": "Negative Matches",
+    "all": "All"
+  }
+}
